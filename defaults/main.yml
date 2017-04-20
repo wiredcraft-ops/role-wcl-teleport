@@ -3,7 +3,7 @@
 teleport_reset: false
 
 # use local web or github release url
-teleport_binary_url: "https://github.com/gravitational/teleport/releases/download"
+teleport_binary_url: https://github.com/gravitational/teleport/releases/download/v{{ teleport_version }}
 teleport_version: 2.0.3
 
 # teleport general settings
