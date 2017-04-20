@@ -39,14 +39,14 @@
 
 - name: Teleport | Add teleport systemd file
   template:
-    src: telport.service.j2
+    src: teleport.service.j2
     dest: /usr/lib/systemd/system/teleport.service
     owner: root
     group: root
     mode: 0644
   register: teleport_systemd_conf
 
-- name: Teleport | Restart Docker
+- name: Teleport | Restart teleport
   systemd:
     name: teleport
     state: restarted

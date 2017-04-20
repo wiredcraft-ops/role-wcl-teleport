@@ -15,7 +15,7 @@ teleport:
   advertise_ip: {{ teleport_advertise_ip }}
 {% endif %}
 {% if teleport_auth_servers %}
-  auth_servers: {{ teleport_auth_servers }}
+  auth_servers: {{ teleport_auth_servers | to_yaml }}
 {% endif %}
   connection_limits:
 {% if teleport_connection_limits_max_connections %}
@@ -39,14 +39,14 @@ auth_service:
   listen_addr: {{ teleport_auth_service_listen_addr }}
 {% endif %}
 {% if teleport_auth_service_tokens %}
-  tokens: {{ teleport_auth_service_tokens }}
+  tokens: {{ teleport_auth_service_tokens | to_yaml }}
 {% endif %}
   oidc_connectors: []
 {% if teleport_auth_service_cluster_name %}
   cluster_name: {{ teleport_auth_service_cluster_name }}
 {% endif %}
 {% if teleport_auth_service_trusted_clusters %}
-  trusted_clusters: {{ teleport_auth_service_trusted_clusters }}
+  trusted_clusters: {{ teleport_auth_service_trusted_clusters | to_yaml }}
 {% endif %}
 {% else %}
   enabled: "no"
