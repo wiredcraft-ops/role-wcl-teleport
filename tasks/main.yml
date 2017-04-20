@@ -21,12 +21,14 @@
     src: /tmp/teleport-v{{ teleport_version }}-linux-amd64-bin.tar.gz
     dest: /tmp
     remote_src: true
+  when: not teleport_bin.stat.exists
 
 - name: Teleport | Install teleport
   command: |
     make install
   args:
     chdir: /tmp/teleport
+  when: not teleport_bin.stat.exists
 
 - name: Teleport | Add teleport config file
   template:
