@@ -19,7 +19,7 @@
 - name: Teleport | Unarchive teleport archive file
   unarchive:
     src: /tmp/teleport-v{{ teleport_version }}-linux-amd64-bin.tar.gz
-    dest: /tmp/teleport
+    dest: /tmp
     remote_src: true
 
 - name: Teleport | Install teleport

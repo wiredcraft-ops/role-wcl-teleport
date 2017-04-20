@@ -55,7 +55,6 @@ auth_service:
 ssh_service:
 {% if teleport_ssh_service_enabled %}
   enabled: "yes"
-{% endif %}
 {% if teleport_ssh_service_listen_addr %}
   listen_addr: {{ teleport_ssh_service_listen_addr }}
 {% endif %}
