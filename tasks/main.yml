@@ -1,34 +1,34 @@
 ---
-- name: [Teleport] | Reset teleport
+- name: Teleport | Reset teleport
   file:
     path: "{{ teleport_data_dir }}/"
     state: absent
   when: teleport_reset
 
-- name: [Teleport] | Check if teleport is installed
+- name: Teleport | Check if teleport is installed
   stat:
     path: /usr/local/bin/teleport
   register: teleport_bin
 
-- name: [Teleport] | Download teleport archive file
+- name: Teleport | Download teleport archive file
   get_url:
     url: "{{ teleport_binary_url }}/teleport-v{{ teleport_version }}-linux-amd64-bin.tar.gz"
     dest: /tmp/teleport-v{{ teleport_version }}-linux-amd64-bin.tar.gz
   when: not teleport_bin.stat.exists
 
-- name: [Teleport] | Unarchive teleport archive file
+- name: Teleport | Unarchive teleport archive file
   unarchive:
     src: /tmp/teleport-v{{ teleport_version }}-linux-amd64-bin.tar.gz
     dest: /tmp/teleport
     remote_src: true
 
-- name: [Teleport] | Install teleport
+- name: Teleport | Install teleport
   command: |
     make install
   args:
     chdir: /tmp/teleport
 
-- name: [Teleport] | Add teleport config file
+- name: Teleport | Add teleport config file
   template:
     src: teleport.yaml.j2
     dest: /etc/teleport.yaml
@@ -37,7 +37,7 @@
     mode: 0644
   register: teleport_conf
 
-- name: [Teleport] | Add teleport systemd file
+- name: Teleport | Add teleport systemd file
   template:
     src: telport.service.j2
     dest: /usr/lib/systemd/system/teleport.service
@@ -46,7 +46,7 @@
     mode: 0644
   register: teleport_systemd_conf
 
-- name: [Teleport] | Restart Docker
+- name: Teleport | Restart Docker
   systemd:
     name: teleport
     state: restarted
