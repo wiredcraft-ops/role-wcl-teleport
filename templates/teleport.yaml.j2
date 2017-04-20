@@ -46,7 +46,7 @@ auth_service:
   cluster_name: {{ teleport_auth_service_cluster_name }}
 {% endif %}
 {% if teleport_auth_service_trusted_clusters %}
-  trusted_clusters: {{ teleport_auth_service_trusted_clusters | to_yaml }}
+  trusted_clusters: {{ teleport_auth_service_trusted_clusters | to_json }}
 {% endif %}
 {% else %}
   enabled: "no"
