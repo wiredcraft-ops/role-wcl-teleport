@@ -1,0 +1,96 @@
+teleport:
+{% if teleport_nodename %}
+  nodename: {{ teleport_nodename }}
+{% endif %}
+{% if teleport_data_dir %}
+  data_dir: {{ teleport_data_dir }}
+{% endif %}
+{% if teleport_pid_file %}
+  pid_file: {{ teleport_pid_file }}
+{% endif %}
+{% if teleport_auth_token %}
+  auth_token: {{ teleport_auth_token }}
+{% endif %}
+{% if teleport_advertise_ip %}
+  advertise_ip: {{ teleport_advertise_ip }}
+{% endif %}
+{% if teleport_auth_servers %}
+  auth_servers: {{ teleport_auth_servers }}
+{% endif %}
+  connection_limits:
+{% if teleport_connection_limits_max_connections %}
+    max_connections: {{ teleport_connection_limits_max_connections }}
+{% endif %}
+{% if teleport_connection_limits_max_users %}
+    max_users: {{ teleport_connection_limits_max_users }}
+{% endif %}
+  log:
+{% if teleport_log_output %}
+    output: {{ teleport_log_output }}
+{% endif %}
+{% if teleport_log_severity %}
+    severity: {{ teleport_log_severity }}
+{% endif %}
+
+auth_service:
+{% if teleport_auth_service_enabled %}
+  enabled: "yes"
+{% if teleport_auth_service_listen_addr %}
+  listen_addr: {{ teleport_auth_service_listen_addr }}
+{% endif %}
+{% if teleport_auth_service_tokens %}
+  tokens: {{ teleport_auth_service_tokens }}
+{% endif %}
+  oidc_connectors: []
+{% if teleport_auth_service_cluster_name %}
+  cluster_name: {{ teleport_auth_service_cluster_name }}
+{% endif %}
+{% if teleport_auth_service_trusted_clusters %}
+  trusted_clusters: {{ teleport_auth_service_trusted_clusters }}
+{% endif %}
+{% else %}
+  enabled: "no"
+{% endif %}
+
+ssh_service:
+{% if teleport_ssh_service_enabled %}
+  enabled: "yes"
+{% endif %}
+{% if teleport_ssh_service_listen_addr %}
+  listen_addr: {{ teleport_ssh_service_listen_addr }}
+{% endif %}
+{% if teleport_ssh_service_labels %}
+  labels: {{ teleport_ssh_service_labels }}
+{% endif %}
+  commands:
+  - name: hostname
+    command: [/usr/bin/hostname]
+    period: 1h0m0s
+  - name: arch
+    command: [/usr/bin/uname, -p]
+    period: 24h0m0s
+{% else %}
+  enabled: "no"
+{% endif %}
+
+proxy_service:
+{% if teleport_proxy_service_enabled %}
+  enabled: "yes"
+{% if teleport_proxy_service_listen_addr %}
+  listen_addr: {{ teleport_proxy_service_listen_addr }}
+{% endif %}
+{% if teleport_proxy_service_web_listen_addr %}
+  web_listen_addr: {{ teleport_proxy_service_web_listen_addr }}
+{% endif %}
+{% if teleport_proxy_service_tunnel_listen_addr %}
+  tunnel_listen_addr: {{ teleport_proxy_service_tunnel_listen_addr }}
+{% endif %}
+{% if teleport_proxy_service_https_key_file %}
+  https_key_file: {{ teleport_proxy_service_https_key_file }}
+{% endif %}
+{% if teleport_proxy_service_https_cert_file %}
+  https_cert_file: {{ teleport_proxy_service_https_cert_file }}
+{% endif %}
+{% else %}
+  enabled: "no"
+{% endif %}

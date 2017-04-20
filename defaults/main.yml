@@ -1,0 +1,47 @@
+---
+# reset teleport will destroy {{ teleport_data_dir }}
+teleport_reset: false
+
+# use local web or github release url
+teleport_binary_url: "https://github.com/gravitational/teleport/releases/download"
+teleport_version: 2.0.3
+
+# teleport general settings
+teleport_nodename:
+teleport_data_dir: /var/lib/teleport
+teleport_pid_file: /var/run/teleport.pid
+teleport_auth_token:
+teleport_advertise_ip:
+teleport_auth_servers:
+  - 0.0.0.0:3025
+teleport_connection_limits_max_connections: 1000
+teleport_connection_limits_max_users: 250
+teleport_log_output: stderr
+teleport_log_severity: WARN
+
+# teleport auth service settings
+teleport_auth_service_enabled: true
+teleport_auth_service_listen_addr: 0.0.0.0:3025
+teleport_auth_service_tokens:
+#  - proxy,node:
+# ?
+teleport_auth_service_oidc_connectors: []
+teleport_auth_service_cluster_name: ""
+teleport_auth_service_trusted_clusters:
+#  - key_file:
+#    allow_logins:
+#    tunnel_addr:
+
+# teleport ssh service settings
+teleport_ssh_service_enabled: true
+teleport_ssh_service_listen_addr: 0.0.0.0:3022
+teleport_ssh_service_labels:
+#  key: value
+
+# teleport proxy service settings
+teleport_proxy_service_enabled: true
+teleport_proxy_service_listen_addr: 0.0.0.0:3023
+teleport_proxy_service_web_listen_addr: 0.0.0.0:3080
+teleport_proxy_service_tunnel_listen_addr: 0.0.0.0:3024
+teleport_proxy_service_https_key_file:
+teleport_proxy_service_https_cert_file:
