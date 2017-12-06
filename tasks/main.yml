@@ -55,3 +55,8 @@
     daemon_reload: true
   when: teleport_conf.changed or teleport_systemd_conf.changed
 
+- name: Teleport | Start and Enable teleport
+  systemd:
+    name: teleport
+    state: started
+    enabled: true
